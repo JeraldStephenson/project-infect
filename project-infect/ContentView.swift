@@ -27,7 +27,11 @@ struct ContentView: View {
                 ForEach(0..<11, id: \.self) { row in
                     HStack {
                         ForEach(0..<22, id: \.self) { col in
-                            Text("X")
+                            let zombieVirus = ZombieVirus(row: 0, col: 0)
+                            
+                            ZombieVirusView(zombieVirus: zombieVirus) {
+                                //rotate this zombieVirus
+                            }
                         }
                     }
                 }

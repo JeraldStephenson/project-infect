@@ -51,6 +51,7 @@
 		83A6B6482956857800BBE78E /* ZombieVirus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieVirus.swift; sourceTree = "<group>"; };
 		83A6B64A2956882E00BBE78E /* ZombieVirusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieVirusView.swift; sourceTree = "<group>"; };
 		83A6B64C2960EC7F00BBE78E /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
+		83A6B64E2960F35D00BBE78E /* Dev Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Dev Notes.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				83A6B64C2960EC7F00BBE78E /* GameBoard.swift */,
+				83A6B64E2960F35D00BBE78E /* Dev Notes.md */,
 				83A6B61929567DDD00BBE78E /* project_infectApp.swift */,
 				83A6B6482956857800BBE78E /* ZombieVirus.swift */,
 				83A6B64A2956882E00BBE78E /* ZombieVirusView.swift */,

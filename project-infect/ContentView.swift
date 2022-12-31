@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var board = GameBoard()
     var body: some View {
         VStack {
             HStack {
@@ -27,7 +28,8 @@ struct ContentView: View {
                 ForEach(0..<11, id: \.self) { row in
                     HStack {
                         ForEach(0..<22, id: \.self) { col in
-                            let zombieVirus = ZombieVirus(row: 0, col: 0)
+                            let zombieVirus = board.grid[row][col]
+                            
                             
                             ZombieVirusView(zombieVirus: zombieVirus) {
                                 //rotate this zombieVirus

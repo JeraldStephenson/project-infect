@@ -16,6 +16,7 @@
 		83A6B63829567DDD00BBE78E /* project_infectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6B63729567DDD00BBE78E /* project_infectUITestsLaunchTests.swift */; };
 		83A6B6492956857800BBE78E /* ZombieVirus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6B6482956857800BBE78E /* ZombieVirus.swift */; };
 		83A6B64B2956882E00BBE78E /* ZombieVirusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6B64A2956882E00BBE78E /* ZombieVirusView.swift */; };
+		83A6B64D2960EC7F00BBE78E /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6B64C2960EC7F00BBE78E /* GameBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		83A6B63729567DDD00BBE78E /* project_infectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = project_infectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		83A6B6482956857800BBE78E /* ZombieVirus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieVirus.swift; sourceTree = "<group>"; };
 		83A6B64A2956882E00BBE78E /* ZombieVirusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieVirusView.swift; sourceTree = "<group>"; };
+		83A6B64C2960EC7F00BBE78E /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		83A6B61829567DDD00BBE78E /* project-infect */ = {
 			isa = PBXGroup;
 			children = (
+				83A6B64C2960EC7F00BBE78E /* GameBoard.swift */,
 				83A6B61929567DDD00BBE78E /* project_infectApp.swift */,
 				83A6B6482956857800BBE78E /* ZombieVirus.swift */,
 				83A6B64A2956882E00BBE78E /* ZombieVirusView.swift */,
@@ -267,6 +270,7 @@
 			files = (
 				83A6B61C29567DDD00BBE78E /* ContentView.swift in Sources */,
 				83A6B61A29567DDD00BBE78E /* project_infectApp.swift in Sources */,
+				83A6B64D2960EC7F00BBE78E /* GameBoard.swift in Sources */,
 				83A6B64B2956882E00BBE78E /* ZombieVirusView.swift in Sources */,
 				83A6B6492956857800BBE78E /* ZombieVirus.swift in Sources */,
 			);

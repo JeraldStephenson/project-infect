@@ -6,6 +6,7 @@ Latest Progress:
 Next planned steps:
     
     need to set up player turns, only allow players to make moves on their turn
+    need to add player scores that update
     restrict players to only be able to click on their color/zombieVirus strains
     need to prevent clicking on grey/non-infected nodes - this will prevent players from wasting their turn as well as the potential of 'spreading' non-infected nodes on infected nodes (making colored/infected nodes back to grey/non-infected)
     

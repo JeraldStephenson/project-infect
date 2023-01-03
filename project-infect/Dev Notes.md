@@ -1,18 +1,29 @@
 #  Dev Notes
 
 Latest Progress:
-       added feature to only allow players to play off of their infected nodes and only during their turn. No more bug with spreading un-infected.
-
+       added resetting winner var, currentPlayer var, redScore and greenScore var back to what a new game board should have to our reset function.
+       added a guard check to our rotate function to make sure there is no winner before executing function
+       within ContentView, wrapped our game board view with a Z stack and added a winner view to that Z stack that we can have pop up if the board has a winner. Winner modal will also have a button to reset the board to play again.
 Next planned steps:
+    MVP done - 2 player and game rules working as intended
     
-   add logic for ending / winning game
+    add sound effects and maybe background music?
+    add intro/menu screen
+   extension features? - larger game board option would be easiest to implement first?
     
     
     
 Thoughts & Logic:
+
+    when adding sounds effects - want a sound per person infected or just one sound for whole turn?
+    
+    When doing larger grid views, have to make sure they still fit on intended screen sizes - will we need to have aspect ratios / UI scale ? Does this make it too hard to read and play as a user? (too far zoomed out feeling?)
+
     If whole board is completely randomized - it can lead to unfair advantage from one player over another, so we will randomize half the board and then mirror it so that both sides are same
     
 Potential future features / ideas:
+    intro/menu screen with options
+    background music, sound effects
     replace grid cell styles to reflect people / infected/zombies 
     4 Player zombie strain - larger board
     Options to pick larger board size for 2 player?

@@ -17,6 +17,7 @@ class GameBoard: ObservableObject {
     @Published var greenScore = 1
     @Published var redScore = 1
         
+    @Published var winner: String? = nil
     //after adding a delay to infecting zombieVirus nodes, we need to prevent switching to next player until the gameboard is done infecting all of the nodes it is suppose to - we will create a variable counter that will track amount of nodes that should be infected and decrement it as nodes are infected and once it is == 0 turn ends
     private var peopleBeingInfected = 0
     
@@ -25,7 +26,12 @@ class GameBoard: ObservableObject {
     }
     
     func reset() {
+        winner = nil
+        currentPlayer = .green
+        redScore = 1
+        greenScore = 1
         grid.removeAll()
+        
         
         for row in 0..<rowCount {
             var newRow = [ZombieVirus]()
@@ -148,6 +154,7 @@ class GameBoard: ObservableObject {
         guard zombieVirus.color == currentPlayer else { return }
         //must wait until current infection wave is finished before we can take action
         guard peopleBeingInfected == 0 else { return }
+        guard winner == nil else { return }
         objectWillChange.send()
         
         zombieVirus.direction = zombieVirus.direction.next
@@ -187,10 +194,11 @@ class GameBoard: ObservableObject {
             withAnimation(.spring()) {
                 if redScore == 0 {
                     //green wins!
+                    winner = "Green"
                     
                 } else if greenScore == 0 {
                     //red wins!
-                    
+                    winner = "Red"
                 } else {
                     changePlayer()
                 }

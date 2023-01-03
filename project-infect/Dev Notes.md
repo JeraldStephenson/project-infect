@@ -1,9 +1,11 @@
 #  Dev Notes
 
 Latest Progress:
+        MVP 2 Player Game COMPLETED!
        added resetting winner var, currentPlayer var, redScore and greenScore var back to what a new game board should have to our reset function.
        added a guard check to our rotate function to make sure there is no winner before executing function
        within ContentView, wrapped our game board view with a Z stack and added a winner view to that Z stack that we can have pop up if the board has a winner. Winner modal will also have a button to reset the board to play again.
+       
 Next planned steps:
     MVP done - 2 player and game rules working as intended
     

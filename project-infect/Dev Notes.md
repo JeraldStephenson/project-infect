@@ -1,15 +1,11 @@
 #  Dev Notes
 
 Latest Progress:
-       
+       added feature to only allow players to play off of their infected nodes and only during their turn. No more bug with spreading un-infected.
 
 Next planned steps:
     
-    need to set up player turns, only allow players to make moves on their turn
-  
-    restrict players to only be able to click on their color/zombieVirus strains
-        - can add this feature as guard checks within our rotate function
-    need to prevent clicking on grey/non-infected nodes - this will prevent players from wasting their turn as well as the potential of 'spreading' non-infected nodes on infected nodes (making colored/infected nodes back to grey/non-infected)
+   add logic for ending / winning game
     
     
     
@@ -23,6 +19,11 @@ Potential future features / ideas:
     An additional mode/option that allows for a computer/pve as military that can (randomly?) clear areas of the board (killing infected) and sending in medical units that can cure infected ?
 
 Completed tasks:
+    need to set up player turns, only allow players to make moves on their turn
+  
+    restrict players to only be able to click on their color/zombieVirus strains
+        - can add this feature as guard checks within our rotate function
+    need to prevent clicking on grey/non-infected nodes - this will prevent players from wasting their turn as well as the potential of 'spreading' non-infected nodes on infected nodes (making colored/infected nodes back to grey/non-infected)
        added player scores that update - we used a counter var that is incremented during infection adding to our toBeInfected array, and then decremented when our async Task of changing the UI colors is done. We will use this counter var to ensure that the infecting algo and updates to the UI rendering is done (counter var should be back to 0) before allowing for the next turn/action to take place. 
         updated the hardcoded redscore & greenscore in contentview to be our dynamic variables from our gameboard. added some style to these text
     finished algo for indirect infection. refactored algo to include a delay to each zombieVirus node color change when infection is spreading to give visual feedback to players on how the infection spreads from one node to the next

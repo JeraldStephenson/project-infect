@@ -144,6 +144,10 @@ class GameBoard: ObservableObject {
     }
     
     func rotate(zombieVirus: ZombieVirus) {
+        //node has to be current player's color to change - this prevents clicking on other player's infected as well as non-infected nodes and spreading those items
+        guard zombieVirus.color == currentPlayer else { return }
+        //must wait until current infection wave is finished before we can take action
+        guard peopleBeingInfected == 0 else { return }
         objectWillChange.send()
         
         zombieVirus.direction = zombieVirus.direction.next

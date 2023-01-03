@@ -18,7 +18,7 @@ class GameBoard: ObservableObject {
     @Published var redScore = 1
         
     //after adding a delay to infecting zombieVirus nodes, we need to prevent switching to next player until the gameboard is done infecting all of the nodes it is suppose to - we will create a variable counter that will track amount of nodes that should be infected and decrement it as nodes are infected and once it is == 0 turn ends
-    var peopleBeingInfected = 0
+    private var peopleBeingInfected = 0
     
     init() {
         reset()
@@ -128,15 +128,19 @@ class GameBoard: ObservableObject {
             //if current zombieVirus within peopleToInfect array has different color than the color of zombieVirus we passed in as argument to infect (note the *from* argument label), change color to that color (from the *from* argument label)
             if zombieVirus.color != from.color {
                 zombieVirus.color = from.color
+                peopleBeingInfected += 1
                 //we want to make sure this async task runs on our main thread to ensure smooth UI update/rendering
                 Task { @MainActor in
                     //recursive call of infect on current zombieVirus node in our loop
                     try await Task.sleep(for: .milliseconds(50))
+                    peopleBeingInfected -= 1
                     infect(from: zombieVirus)
                 }
                
             }
         }
+        
+        updateScores()
     }
     
     func rotate(zombieVirus: ZombieVirus) {
@@ -156,6 +160,8 @@ class GameBoard: ObservableObject {
     }
     
     func updateScores() {
+        //we capture updated score values here while looping through grid and only update redScore and greenScore directly once at the end.
+            //if we were to update redScore and greenScore directly when looping over the grid we would be calling objectWillChange() for each grid cell potentially versus calling it twice at the end of the loop
         var newRedScore = 0
         var newGreenScore = 0
         
@@ -172,6 +178,19 @@ class GameBoard: ObservableObject {
         redScore = newRedScore
         greenScore = newGreenScore
         
-        //more code to come - good place to take action when a turn is finished
+        //logic for end of turn or end of game
+        if peopleBeingInfected == 0 {
+            withAnimation(.spring()) {
+                if redScore == 0 {
+                    //green wins!
+                    
+                } else if greenScore == 0 {
+                    //red wins!
+                    
+                } else {
+                    changePlayer()
+                }
+            }
+        }
     }
 }

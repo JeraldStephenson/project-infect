@@ -1,22 +1,30 @@
 #  Dev Notes
 
 Latest Progress:
-       added player scores that update - we used a counter var that is incremented during infection adding to our toBeInfected array, and then decremented when our async Task of changing the UI colors is done. We will use this counter var to ensure that the infecting algo and updates to the UI rendering is done (counter var should be back to 0) before allowing for the next turn/action to take place. 
-        updated the hardcoded redscore & greenscore in contentview to be our dynamic variables from our gameboard. added some style to these text
+       
 
 Next planned steps:
     
     need to set up player turns, only allow players to make moves on their turn
-    need to add player scores that update
+  
     restrict players to only be able to click on their color/zombieVirus strains
+        - can add this feature as guard checks within our rotate function
     need to prevent clicking on grey/non-infected nodes - this will prevent players from wasting their turn as well as the potential of 'spreading' non-infected nodes on infected nodes (making colored/infected nodes back to grey/non-infected)
     
     
     
 Thoughts & Logic:
     If whole board is completely randomized - it can lead to unfair advantage from one player over another, so we will randomize half the board and then mirror it so that both sides are same
+    
+Potential future features / ideas:
+    replace grid cell styles to reflect people / infected/zombies 
+    4 Player zombie strain - larger board
+    Options to pick larger board size for 2 player?
+    An additional mode/option that allows for a computer/pve as military that can (randomly?) clear areas of the board (killing infected) and sending in medical units that can cure infected ?
 
 Completed tasks:
+       added player scores that update - we used a counter var that is incremented during infection adding to our toBeInfected array, and then decremented when our async Task of changing the UI colors is done. We will use this counter var to ensure that the infecting algo and updates to the UI rendering is done (counter var should be back to 0) before allowing for the next turn/action to take place. 
+        updated the hardcoded redscore & greenscore in contentview to be our dynamic variables from our gameboard. added some style to these text
     finished algo for indirect infection. refactored algo to include a delay to each zombieVirus node color change when infection is spreading to give visual feedback to players on how the infection spreads from one node to the next
         allows nodes pointing to infected nodes to become infected themselves (indirect infection)
         basic algo that allows for rotating an zombieVirus node and point to a next node that it can infect and changes that node and connecting nodes to that player's color declaring that those nodes are now that player's zombie strain

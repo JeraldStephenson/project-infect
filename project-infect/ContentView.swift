@@ -33,6 +33,7 @@ struct ContentView: View {
                             
                             ZombieVirusView(zombieVirus: zombieVirus) {
                                 //rotate this zombieVirus
+                                board.rotate(zombieVirus: zombieVirus)
                             }
                         }
                     }

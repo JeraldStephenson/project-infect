@@ -24,6 +24,7 @@ class GameBoard: ObservableObject {
             var newRow = [ZombieVirus]()
             
             for col in 0..<columnCount {
+                //creating our ZombieVirus node for current row and current column
                 let zombieVirus = ZombieVirus(row: row, col: col)
                 
                 //logic to randomize half the board and mirror so that it is fair (fully randomized creates unfair opportunity during play)
@@ -53,10 +54,11 @@ class GameBoard: ObservableObject {
             
             grid.append(newRow)
         }
-        
+        //setting the player starting points
         grid[0][0].color = .green
         grid[rowCount - 1][columnCount - 1].color = .red
     }
+    
     
     func getZombieVirus(atRow row: Int, col: Int) -> ZombieVirus? {
         guard row >= 0 else {return nil}
@@ -64,5 +66,46 @@ class GameBoard: ObservableObject {
         guard col >= 0 else { return nil }
         guard col < grid[0].count else {return nil}
         return grid[row][col]
+    }
+    
+    
+    func infect(from: ZombieVirus) {
+        //more code to come
+        objectWillChange.send()
+        
+        var peopleToInfect = [ZombieVirus?]()
+        
+        switch from.direction {
+            //if current is pointing north, read the peopleToInfect right above current
+        case .north:
+            peopleToInfect.append(getZombieVirus(atRow: from.row - 1, col: from.col))
+            //if current is pointing south, read the peopleToInfect right below current
+        case .south:
+            peopleToInfect.append(getZombieVirus(atRow: from.row + 1, col: from.col))
+            //if current is pointing east, read the peopleToInfect to the right of current
+        case .east:
+            peopleToInfect.append(getZombieVirus(atRow: from.row, col: from.col + 1))
+            //if current is pointing west, read the peopleToInfect to the left of current
+        case .west:
+            peopleToInfect.append(getZombieVirus(atRow: from.row, col: from.col - 1))
+        }
+        
+        //if our ZombieVirus optional unwraps into a value, loop through people to infect
+        for case let zombieVirus? in peopleToInfect {
+            //if current zombieVirus within peopleToInfect array has different color than the color of zombieVirus we passed in as argument to infect (note the *from* argument label), change color to that color (from the *from* argument label)
+            if zombieVirus.color != from.color {
+                zombieVirus.color = from.color
+                //recursive call of infect on current zombieVirus node in our loop
+                infect(from: zombieVirus)
+            }
+        }
+    }
+    
+    func rotate(zombieVirus: ZombieVirus) {
+        objectWillChange.send()
+        
+        zombieVirus.direction = zombieVirus.direction.next
+        
+        infect(from: zombieVirus)
     }
 }

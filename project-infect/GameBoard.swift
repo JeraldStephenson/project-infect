@@ -75,6 +75,7 @@ class GameBoard: ObservableObject {
         
         var peopleToInfect = [ZombieVirus?]()
         
+        //direct infection (infection spread through pointing at next zombieVirus)
         switch from.direction {
             //if current is pointing north, read the peopleToInfect right above current
         case .north:
@@ -90,13 +91,43 @@ class GameBoard: ObservableObject {
             peopleToInfect.append(getZombieVirus(atRow: from.row, col: from.col - 1))
         }
         
-        //if our ZombieVirus optional unwraps into a value, loop through people to infect
+        //indirect infection (infection spread through bordering zombieVirus pointing to an infected zombeVirus)
+            //indirect infect from above
+        if let indirect = getZombieVirus(atRow: from.row - 1, col: from.col) {
+            if indirect.direction == .south {
+                peopleToInfect.append(indirect)
+            }
+        }
+            //indirect infect from below
+        if let indirect = getZombieVirus(atRow: from.row + 1, col: from.col) {
+            if indirect.direction == .north {
+                peopleToInfect.append(indirect)
+            }
+        }
+            //indirect infect from left
+        if let indirect = getZombieVirus(atRow: from.row, col: from.col - 1) {
+            if indirect.direction == .east {
+                peopleToInfect.append(indirect)
+            }
+        }
+            //indirect infect from right
+        if let indirect = getZombieVirus(atRow: from.row, col: from.col + 1) {
+            if indirect.direction == .west {
+                peopleToInfect.append(indirect)
+            }
+        }
+        //if our ZombieVirus optional unwraps into a value (as it should), loop through people to infect
         for case let zombieVirus? in peopleToInfect {
             //if current zombieVirus within peopleToInfect array has different color than the color of zombieVirus we passed in as argument to infect (note the *from* argument label), change color to that color (from the *from* argument label)
             if zombieVirus.color != from.color {
                 zombieVirus.color = from.color
-                //recursive call of infect on current zombieVirus node in our loop
-                infect(from: zombieVirus)
+                //we want to make sure this async task runs on our main thread to ensure smooth UI update/rendering
+                Task { @MainActor in
+                    //recursive call of infect on current zombieVirus node in our loop
+                    try await Task.sleep(for: .milliseconds(50))
+                    infect(from: zombieVirus)
+                }
+               
             }
         }
     }

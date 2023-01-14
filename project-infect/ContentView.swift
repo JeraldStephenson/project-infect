@@ -19,7 +19,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                Text("Zombination")
+                Text("Big Brain Z-Strain")
                 
                 Spacer()
                 
